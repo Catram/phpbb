@@ -3,6 +3,9 @@ name: Build
 on:
   push:
     branches: [main]
+  # Builds without pushing, as the check Dependabot's pull requests wait for.
+  pull_request:
+    branches: [main]
   # Weekly, for new phpBB releases and fixes to the PHP image.
   schedule:
     - cron: "41 4 * * 1"
@@ -13,7 +16,7 @@ permissions:
   packages: write
 
 concurrency:
-  group: build
+  group: build-${{ github.ref }}
   cancel-in-progress: false
 
 env:
@@ -25,7 +28,7 @@ jobs:
     # GitHub's Ubuntu image comes with Podman.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Find the current phpBB release
         id: phpbb
