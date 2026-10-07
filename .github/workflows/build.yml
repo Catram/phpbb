@@ -22,8 +22,8 @@ env:
 
 jobs:
   build:
-    # The self-hosted runner on claw, which builds with rootless Podman.
-    runs-on: [self-hosted, podman]
+    # GitHub's Ubuntu image comes with Podman.
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
 
@@ -59,14 +59,6 @@ jobs:
           printf '%s' "$TOKEN" | podman login ghcr.io --username "$GITHUB_ACTOR" --password-stdin
           podman push "$IMAGE:$TAG"
           podman push "$IMAGE:$PHPBB_BRANCH"
+          podman logout ghcr.io
           echo "Pushed $IMAGE:$TAG" >> "$GITHUB_STEP_SUMMARY"
 
-      # The runner keeps its image store between jobs; do not let it grow.
-      - name: Clean up
-        if: always()
-        env:
-          TAG: ${{ steps.phpbb.outputs.tag }}
-        run: |
-          podman logout ghcr.io || true
-          podman rmi --ignore "$IMAGE:$TAG" "$IMAGE:$PHPBB_BRANCH" || true
-          podman image prune --force

@@ -73,7 +73,7 @@ After a new version is deployed, `db:migrate` runs its migrations too.
 
 ## Building
 
-Every push to `main` builds and pushes the image on the self-hosted runner,
+Every push to `main` builds and pushes the image on a GitHub-hosted runner,
 and so does a weekly scheduled run, which picks up a new phpBB release. Each
 build is tagged `<version>-<run number>`, e.g. `3.3.19-12`; deployments pin
 one of these tags. The `3.3` tag always points to the latest build.
