@@ -1,24 +1,26 @@
 #!/bin/sh
 # Installs phpBB and the pinned add-ons into the web root. Run by the
-# Containerfile, which provides curl and unzip.
+# Containerfile, which provides wget and unzip.
 #
 #   install.sh <phpBB version> <web root>
 #
 # Every download is checked against a SHA-256: phpBB against the one
 # published next to it, the add-ons against the ones pinned in the TSV files
 # next to this script (extensions.tsv, styles.tsv, languages.tsv).
+#
+# phpbb.com is behind Cloudflare, which challenges a user agent that looks
+# like a bot, such as one with a URL in it. wget's own gets through.
 set -eu
 
 version=$1
 root=${2:?web root}
 here=$(dirname "$0")
-agent='Catram image build (+https://github.com/Catram/phpbb)'
 tab=$(printf '\t')
 work=$(mktemp -d)
 
 # fetch URL SHA256: download URL, check it, and unpack it into $work/unpacked.
 fetch() {
-	curl -fsSL -A "$agent" -o "$work/download.zip" "$1"
+	wget -nv -O "$work/download.zip" "$1"
 	echo "$2  $work/download.zip" | sha256sum -c -
 	rm -rf "$work/unpacked"
 	unzip -q "$work/download.zip" -d "$work/unpacked"
@@ -31,7 +33,8 @@ rows() {
 
 # phpBB itself, without the installer.
 base="https://download.phpbb.com/pub/release/${version%.*}/$version"
-sha256=$(curl -fsSL -A "$agent" "$base/phpBB-$version.zip.sha256" | cut -d' ' -f1)
+sha256=$(wget -nv -O - "$base/phpBB-$version.zip.sha256" | cut -d' ' -f1)
+test -n "$sha256"
 fetch "$base/phpBB-$version.zip" "$sha256"
 rm -rf "$root"
 mv "$work/unpacked/phpBB3" "$root"

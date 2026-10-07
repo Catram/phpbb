@@ -12,12 +12,13 @@ Podman Quadlet behind nginx on the host.
 - The extensions, styles and language packs in `extensions.tsv`,
   `styles.tsv` and `languages.tsv`, downloaded from phpBB's Customisation
   Database at build time by `install.sh`, each pinned to a version and checked
-  against its SHA-256. phpbb.com sometimes turns away automated downloads; a
-  build that hits this fails on the checksum and can simply be run again.
+  against its SHA-256. phpbb.com is behind Cloudflare, which can turn away
+  automated downloads; a build that hits this fails with a 403 and can simply
+  be run again.
 - `overlay/`: anything that is not on the Customisation Database, laid out as
   in the forum's root (`ext/<vendor>/<name>`, `styles/<name>`,
   `language/<code>`) and copied over the release.
-- PHP 8.3 with Apache, configured by `apache.conf` and `php.ini`. phpBB's own
+- PHP 8.4 with Apache, configured by `apache.conf` and `php.ini`. phpBB's own
   `.htaccess` files are honoured.
 - `config.php`, which reads everything from the environment.
 

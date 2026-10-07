@@ -2,7 +2,7 @@
 # against its published SHA-256, with overlay/ (third-party extensions,
 # styles and languages) copied on top, on PHP and Apache.
 
-FROM docker.io/library/php:8.3-apache
+FROM docker.io/library/php:8.4-apache
 
 # PHP extensions: mysqli for the database, gd for the image CAPTCHA and
 # thumbnails, apcu for the cache. Build dependencies are removed afterwards.
@@ -38,10 +38,10 @@ WORKDIR /var/www/html
 COPY install.sh extensions.tsv styles.tsv languages.tsv /tmp/build/
 RUN set -eux; \
 	apt-get update; \
-	apt-get install -y --no-install-recommends curl unzip; \
+	apt-get install -y --no-install-recommends wget unzip; \
 	sh /tmp/build/install.sh "$PHPBB_VERSION" /var/www/html; \
 	rm -rf /tmp/build; \
-	apt-get purge -y --auto-remove curl unzip; \
+	apt-get purge -y --auto-remove wget unzip; \
 	rm -rf /var/lib/apt/lists/*
 
 # Anything not on the CDB, laid out as in the forum's root
