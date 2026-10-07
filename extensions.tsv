@@ -1,0 +1,13 @@
+name	version	url	sha256	note
+phpbb/boardannouncements	1.3.1	https://www.phpbb.com/customise/db/download/217657	5a79c10df17117857193b77ebad077d3ad84e11a62f6948d726f8433675ef747	
+phpbb/boardrules	3.1.0	https://www.phpbb.com/customise/db/download/217663	48725f16fe2dc6d7938c97e535d81a3d05b74859e1f34b9efc63c47e1cfd1852	
+phpbb/collapsiblecategories	2.1.0	https://www.phpbb.com/customise/db/download/203566	bab0d760bcee1fb975670438ef1aa8baa28dfec1ba2ecc3d1ab73f75628d9d3f	
+phpbb/googleanalytics	1.2.0	https://www.phpbb.com/customise/db/download/215800	b9b2a7b06b82e2896f5fb1bc179802f0ec2f405a3f347af49b3d37a0c149f4e3	
+phpbb/pages	3.1.1	https://www.phpbb.com/customise/db/download/217792	167f3e3fe256865bd9b55f0eca2fea20135ad76c27d2f452a705326617bf7a3d	
+vse/similartopics	1.8.0	https://www.phpbb.com/customise/db/download/217522	b26397b3528a286117649c224a04ec8e7a5a745b216958e02b65ade4c7450f7a	
+vse/passwordstrength	2.0.0	https://www.phpbb.com/customise/db/download/215860	c390820ca8bf9f1ea0685369ef103e9db100ba03e504516f09b5b4c4a017473f	
+shredder/sitemap	1.1.3	https://www.phpbb.com/customise/db/download/196891	3f84a32667e7b4e5de56f973ac93b1c0e3bb0d837ebad1a6078906eb5673e244	
+paybas/quicklogin	1.1.3	https://www.phpbb.com/customise/db/download/181051	7829ba2e713bc7dd9610fdba38881edf030fd704c299bcfccef45f10ea58e811	Last release under PayBas; 1.2.0 on the CDB is avathar/quicklogin, a different extension to phpBB
+paybas/breadcrumbmenu	1.0.6	https://www.phpbb.com/customise/db/download/143966	ff7295d5f6035afe147f3317468ccaee814e4085760bcac0f6f281d32f2e67b1	Unmaintained; declares phpBB 3.1 to 3.2 only
+david63/loginredirect	1.1.0	https://www.phpbb.com/customise/db/download/115046	b5f7c745371190bf9e5dcd66b6732b2634c4f3b978310129a562adef8780dc78	Unmaintained on the CDB; declares phpBB 3.1 only
+dmzx/chl	1.0.3	https://www.phpbb.com/customise/db/download/127346	ef5d65181c8b190b8cf0cd897ff472acbe45865ea0bce602889872fb7ec44ead	Custom Header Logo. Unmaintained; declares phpBB 3.1 only

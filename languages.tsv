@@ -1,0 +1,3 @@
+name	version	url	sha256	note
+zh_cmn_hans	26.10.1	https://www.phpbb.com/customise/db/download/218212	37f9dcd54002b0b343f7a84995bc152c7a1823795c2e18aefa967a108a54f391	Mandarin Chinese (Simplified Script)
+zh_cmn_hant	3.3.16	https://www.phpbb.com/customise/db/download/214612	95019568ec6c9a1cf67e6d5f75cf8d7f5932da84834c51f76f53eaba9b62caee	Mandarin Chinese (Traditional Script). Built for phpBB 3.3.17; newer strings fall back to English
