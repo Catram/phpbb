@@ -47,6 +47,26 @@ After a new release is deployed, migrate the database once:
 php /var/www/html/bin/phpbbcli.php db:migrate
 ```
 
+## Memory
+
+These environment variables size PHP and Apache. The defaults suit a site
+with little traffic; set any of them in the container's environment to change
+it.
+
+| Variable | Default | Sets |
+|---|---|---|
+| `PHP_MEMORY_LIMIT` | `256M` | `memory_limit`: the most one request may use |
+| `PHP_OPCACHE_MEMORY` | `128` | `opcache.memory_consumption`, in MB: compiled code, shared by all processes |
+| `PHP_APCU_SIZE` | `32M` | `apc.shm_size`: APCu's shared cache, phpBB's whole cache |
+| `APACHE_START_SERVERS` | `2` | `StartServers` |
+| `APACHE_MIN_SPARE_SERVERS` | `1` | `MinSpareServers` |
+| `APACHE_MAX_SPARE_SERVERS` | `3` | `MaxSpareServers`: idle processes beyond this are stopped |
+| `APACHE_MAX_REQUEST_WORKERS` | `10` | `MaxRequestWorkers`: requests served at once; others wait |
+| `APACHE_MAX_CONNECTIONS_PER_CHILD` | `500` | `MaxConnectionsPerChild`: a process is replaced after this many |
+
+Each Apache process holds its own PHP memory, so the process counts matter
+most. The shared caches only take memory as they fill.
+
 ## Extensions, styles and languages
 
 Each list is tab-separated, with a header row: `name`, `version`, `url`,

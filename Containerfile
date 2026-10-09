@@ -28,6 +28,19 @@ RUN set -eux; \
 	rm -rf /var/lib/apt/lists/*
 
 RUN a2enmod remoteip rewrite headers
+
+# Memory, tunable at run time through the environment (see the README): PHP's
+# per-request limit and shared caches, read by php.ini, and the number of
+# Apache processes, read by apache.conf.
+ENV PHP_MEMORY_LIMIT=256M \
+	PHP_OPCACHE_MEMORY=128 \
+	PHP_APCU_SIZE=32M \
+	APACHE_START_SERVERS=2 \
+	APACHE_MIN_SPARE_SERVERS=1 \
+	APACHE_MAX_SPARE_SERVERS=3 \
+	APACHE_MAX_REQUEST_WORKERS=10 \
+	APACHE_MAX_CONNECTIONS_PER_CHILD=500
+
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 COPY php.ini /usr/local/etc/php/conf.d/phpbb.ini
 
