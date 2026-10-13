@@ -2,7 +2,7 @@
 # against its published SHA-256, with overlay/ (third-party extensions,
 # styles and languages) copied on top, on PHP and Apache.
 
-FROM docker.io/library/php:8.4-apache
+FROM docker.io/library/php:8.5-apache
 
 # PHP extensions: mysqli for the database, gd for the image CAPTCHA and
 # thumbnails, apcu for the cache. Build dependencies are removed afterwards.
